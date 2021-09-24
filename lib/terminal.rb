@@ -9,11 +9,12 @@ class Terminal
   end
 
   def print_message
-    puts "Created #{@output_braile_file} containing XXX characters"
+    puts "Created #{@output_braile_file} containing #{character_count} characters"
   end
 
   def character_count
-    file = File.open("./#{@user_provided_file}")
+    @@filename = @user_provided_file
+    file = File.open(@@filename)
     results = file.read
     results.length
   end
