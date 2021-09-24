@@ -1,6 +1,4 @@
-require 'rspec'
-require './lib/terminal'
-require './lib/braille'
+require_relative './spec_helper'
 
 describe Braille do
   it 'exists' do
@@ -8,11 +6,11 @@ describe Braille do
     expect(braille).to be_an_instance_of(Braille)
   end
 
-  it 'XXXXXX' do
-
-  end
-
-  it 'XXXXX' do
-
-  end
+  # it 'XXXXXX' do
+  #
+  # end
+  #
+  # it 'XXXXX' do
+  #
+  # end
 end
