@@ -13,9 +13,8 @@ class Terminal
   end
 
   def character_count(file)
-    @@filename = file
-    if File.exists?(@@filename) == true
-      file = File.open(@@filename)
+    if File.exists?(file) == true
+      file = File.open(file)
       results = file.read
       results.length
     else
@@ -24,21 +23,19 @@ class Terminal
   end
 
   def copy_users_file
-    @@filename = @user_provided_file
-    file = File.open(@@filename)
+    file = File.open(@user_provided_file)
     results = file.read
+    file.close
     results
   end
 
   def create_new_file
-    @@filename = @output_braile_file
     File.new(@output_braile_file, mode: "w")
   end
 
   def copy_into_new_file
     content = copy_users_file
-    @@filename = @output_braile_file
-    file = File.open(@@filename, mode: "w")
+    file = File.open(@output_braile_file, mode: "w")
     file.write(content)
     file.close
   end

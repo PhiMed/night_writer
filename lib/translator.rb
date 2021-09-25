@@ -1,4 +1,4 @@
-require './lib/terminal'
+require './lib/dictionary'
 
 class Translator
   @@filename = "./braille.txt"
@@ -13,5 +13,17 @@ class Translator
     @content.scan /\w/
   end
 
-  # end
+  def translate
+    original_array = content_to_array_of_characters
+    translated_array = []
+    original_array.each do |letter|
+      @dictionary.letters.each do |letter_object|
+        if letter == letter_object.roman_letter
+          translated_array << letter_object.braille_letter
+        end
+      end
+    end
+    translated_array
+    require "pry"; binding.pry
+  end
 end
