@@ -1,3 +1,7 @@
+require './lib/dictionary'
+require './lib/translator'
+require './lib/formatter'
+
 class Terminal
 
   attr_reader :user_provided_file, :output_braile_file
@@ -5,17 +9,19 @@ class Terminal
   def initialize(user_provided_file, output_braile_file)
     @user_provided_file = user_provided_file
     @output_braile_file = output_braile_file
+    self.copy_translate_format_and_save
+    self.elaborate_way_to_remove_brackets
+    # self.reformat_braille_text
     self.print_message
   end
 
   def print_message
-    puts "Created #{@output_braile_file} containing #{character_count(@user_provided_file)} characters"
+    puts "Created #{@output_braile_file} containing #{character_count(@output_braile_file)} characters"
   end
 
   def character_count(file)
-    @@filename = file
-    if File.exists?(@@filename) == true
-      file = File.open(@@filename)
+    if File.exists?(file) == true
+      file = File.open(file)
       results = file.read
       results.length
     else
@@ -23,29 +29,62 @@ class Terminal
     end
   end
 
-  def copy_users_file
-    @@filename = @user_provided_file
-    file = File.open(@@filename)
+  def copy_file(file)
+    file = File.open(file)
     results = file.read
+    file.close
     results
   end
 
-  def create_new_file
-    @@filename = @output_braile_file
-    File.new(@output_braile_file, mode: "w")
+  #doesn't get ride of the "[]" characters for some reason
+  def translate
+    translator = Translator.new
+    translated_content = translator.translate
+    translated_content
   end
 
-  def copy_into_new_file
-    content = copy_users_file
-    @@filename = @output_braile_file
-    file = File.open(@@filename, mode: "w")
-    file.write(content)
+  def reformat_braille_text
+    formatter = Formatter.new
+    formatter.reformat
+  end
+
+  # def save
+  #   content = self.translate
+  # File.new(@output_braile_file, mode: "w")
+  # open(@output_braile_file, 'a'){ |f|
+  #   translate.each do |character|
+  #   f << "#{character[0]}\n"
+  #   f << "#{character[1]}\n"
+  #   f << "#{character[2]}\n"
+  #   end
+  #     }
+  #
+  # end
+
+
+  def save
+    translated_content = self.translate
+    File.new(@output_braile_file, mode: "w")
+    file = File.open(@output_braile_file, mode: "w")
+    file.write(translated_content.to_s.gsub('"', '').gsub(' ', '').gsub(',', ''))
     file.close
   end
 
-  def copy_and_create
-    copy_users_file
-    create_new_file
-    copy_into_new_file
+  #need to figure out how to get rid of '[]' some other way
+  def elaborate_way_to_remove_brackets
+    content = copy_file(@output_braile_file)
+    file = File.open(@output_braile_file, mode: "w")
+    file.write(content.to_s.gsub('[', '').gsub(']', ''))
+    file.close
   end
+
+  def copy_translate_format_and_save
+    copy_file(@user_provided_file)
+    translate
+    # reformat_braille_text
+    save
+  end
+
+
+
 end

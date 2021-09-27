@@ -9,8 +9,17 @@ describe Translator do
     expect(@translator).to be_an_instance_of(Translator)
   end
 
-  it 'can read the braille.txt file' do
-    expect(@translator.content.length).to eq 729
+  it 'can has access to the braille.txt file' do
+    expect(@translator.content.length).to eq 27
   end
 
+  it 'can convert the content to an array of characters' do
+    expect(@translator.array_of_untranslated_characters).not_to eq nil
+  end
+
+  it 'can translate' do
+    original_array = @translator.array_of_untranslated_characters
+    expect(@translator.translate).not_to eq nil
+    expect(@translator.translate).not_to eq original_array
+  end
 end
