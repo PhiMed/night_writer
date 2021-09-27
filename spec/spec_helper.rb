@@ -1,7 +1,9 @@
 require 'simplecov'
 SimpleCov.start
-require './lib/terminal'
-require './lib/translator'
+require './lib/writer'
+require './lib/reader'
+require './lib/translate_to_english'
+require './lib/translate_to_braille'
 require './lib/dictionary'
 require './lib/letter'
 require 'rspec'

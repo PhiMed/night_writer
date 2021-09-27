@@ -8,7 +8,7 @@ class Writer
   def initialize(user_provided_file, output_file)
     @user_provided_file = user_provided_file
     @output_file = output_file
-    self.copy_translate_transpose_and_save_to_braille
+    self.copy_translate_and_save_to_braille
     self.print_message
   end
 
@@ -42,12 +42,6 @@ class Writer
     c
   end
 
-  # def translate_to_english
-  #   translator = Translator.new(@user_provided_file)
-  #   translated_to_english_content = translator.translate_to_english
-  #   translated_to_english_content
-  # end
-
   def save_to_braille
     File.new(@output_file, mode: "w")
     open(@output_file, 'a'){ |f|
@@ -57,7 +51,7 @@ class Writer
     end}
   end
 
-  def copy_translate_transpose_and_save_to_braille
+  def copy_translate_and_save_to_braille
     copy_file(@user_provided_file)
     translate_to_braille
     save_to_braille

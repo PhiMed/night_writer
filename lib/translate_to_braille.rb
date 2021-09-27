@@ -9,7 +9,7 @@ class TranslateToBraille
   end
 
   def array_of_untranslated_characters
-    @content.scan /\w/
+    @content.split('')
   end
 
   def translate_to_braille
