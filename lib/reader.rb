@@ -38,18 +38,19 @@ class Reader
     translator.translate_to_english
   end
 
-  def save_to_english
-    File.new(@output_file, mode: "w")
-    open(@output_file, 'a'){ |f|
-    translate_to_english.each do |character|
-      f << character[0].to_s.gsub('"', '').gsub(',','').gsub('[', '').gsub(']','').gsub(' ', '')
-      f << "#{character[1]}"
-    end}
+  def save_to_english(english)
+    file = File.new(@output_file, mode: "w")
+    file.write(english)
+    # open(@output_file, 'a'){ |f|
+    # translate_to_english.each do |character|
+    #   f << character[0].to_s.gsub('"', '').gsub(',','').gsub('[', '').gsub(']','').gsub(' ', '')
+    #   f << "#{character[1]}"
+    # end}
+    file.close
   end
 
   def copy_translate_transpose_and_save_to_english
     copy_file(@user_provided_file)
-    translate_to_english
-    save_to_english
+    save_to_english(translate_to_english.to_s.gsub('"', '').gsub(',','').gsub('[', '').gsub(']','').gsub(' ', ''))
   end
 end
