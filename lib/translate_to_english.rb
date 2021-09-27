@@ -9,7 +9,6 @@ class TranslateToEnglish
   end
 
   def array_of_untranslated_characters
-
     array = @content.delete("\n").split('')
     total_length = array.length
     one_third = total_length / 3
@@ -18,17 +17,6 @@ class TranslateToEnglish
     zip2 = sliced[1]
     zip3 = sliced[2]
     zip4 = []
-    # array.each_with_index do |character, index|
-    #   if index < (total_length / 3)-1
-    #     zip1 << character
-    #   elsif
-    #     index < ((total_length / 3)*2)-2
-    #     zip2 << character
-    #   elsif
-    #     index < total_length-3
-    #     zip3 << character
-    #   end
-    # end
     first_two_zips = zip1.zip(zip2)
     last_two_zips = zip3.zip(zip4)
     big_zip = first_two_zips.zip(last_two_zips)
@@ -46,36 +34,6 @@ class TranslateToEnglish
          end
        end
      end
-    translated_to_english_array
+    translated_to_english_array.to_s.gsub('"', '').gsub(',','').gsub('[', '').gsub(']','')
   end
 end
-
-
-
-# container1 = []
-# container2 = []
-# container3 = []
-# container4 = []
-# container5 = []
-# container6 = []
-# aaa123.each_with_index do |character, index|
-#   if index == 0
-#     container1 << character
-#   elsif
-#     index == 1
-#     container3 << character
-#   elsif
-#     index == 2
-#     container5 << character
-#   elsif
-#     index == 3
-#     container2 << character
-#   elsif
-#     index == 4
-#     container4 << character
-#   elsif
-#     index == 5
-#     container6 << character
-#   end
-# end
-# require "pry"; binding.pry

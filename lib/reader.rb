@@ -8,7 +8,7 @@ class Reader
   def initialize(user_provided_file, output_file)
     @user_provided_file = user_provided_file
     @output_file = output_file
-    self.copy_translate_transpose_and_save_to_english
+    self.copy_translate_save_to_english
     self.print_message
   end
 
@@ -41,16 +41,11 @@ class Reader
   def save_to_english(english)
     file = File.new(@output_file, mode: "w")
     file.write(english)
-    # open(@output_file, 'a'){ |f|
-    # translate_to_english.each do |character|
-    #   f << character[0].to_s.gsub('"', '').gsub(',','').gsub('[', '').gsub(']','').gsub(' ', '')
-    #   f << "#{character[1]}"
-    # end}
     file.close
   end
 
-  def copy_translate_transpose_and_save_to_english
+  def copy_translate_save_to_english
     copy_file(@user_provided_file)
-    save_to_english(translate_to_english.to_s.gsub('"', '').gsub(',','').gsub('[', '').gsub(']','').gsub(' ', ''))
+    save_to_english(translate_to_english)
   end
 end
