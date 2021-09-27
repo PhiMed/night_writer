@@ -38,15 +38,15 @@ class Terminal
 
   #doesn't get ride of the "[]" characters for some reason
   def translate
-    translator = Translator.new
+    translator = Translator.new(@user_provided_file)
     translated_content = translator.translate
     translated_content
   end
 
-  def reformat_braille_text
-    formatter = Formatter.new
-    formatter.reformat
-  end
+  # def reformat_braille_text
+  #   formatter = Formatter.new
+  #   formatter.reformat
+  # end
 
   # def save
   #   content = self.translate
@@ -84,7 +84,4 @@ class Terminal
     # reformat_braille_text
     save
   end
-
-
-
 end

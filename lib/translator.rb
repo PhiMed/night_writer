@@ -1,11 +1,11 @@
 require './lib/dictionary'
 
 class Translator
-  @@filename = "./message.txt"
+  #@@filename = "./message.txt"
   attr_reader :content
 
-  def initialize
-    @content = File.read(@@filename)
+  def initialize(user_file)
+    @content = File.read(user_file)
     @dictionary = Dictionary.new
   end
 
