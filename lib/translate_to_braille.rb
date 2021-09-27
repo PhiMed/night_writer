@@ -1,6 +1,6 @@
 require './lib/dictionary'
 
-class Translator
+class TranslateToBraille
   attr_reader :content
 
   def initialize(user_file)
@@ -12,16 +12,16 @@ class Translator
     @content.scan /\w/
   end
 
-  def translate
+  def translate_to_braille
     original_array = array_of_untranslated_characters
-    translated_array = []
+    translated_to_braille_array = []
     original_array.each do |letter|
       @dictionary.letters.each do |letter_object|
         if letter == letter_object.roman_letter
-          translated_array << [letter_object.top_row, letter_object.middle_row, letter_object.bottom_row]
+          translated_to_braille_array << [letter_object.top_row, letter_object.middle_row, letter_object.bottom_row]
         end
       end
     end
-    translated_array
+    translated_to_braille_array
   end
 end

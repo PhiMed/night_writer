@@ -1,3 +1,3 @@
-require './lib/terminal'
+require './lib/writer'
 
-Terminal.new(ARGV[0], ARGV[1])
+Writer.new(ARGV[0], ARGV[1])
