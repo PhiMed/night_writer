@@ -8,9 +8,9 @@ describe Letter do
   end
 
   it 'attributes' do
-    letter = Letter.new({:braille_letter => "0.....",
+    letter = Letter.new({:braille_string => "0.....",
                         :roman_letter => "a"})
-    expect(letter.braille_letter).to eq("0.....")
+    expect(letter.braille_string).to eq("0.....")
     expect(letter.roman_letter).to eq("a")
   end
 
