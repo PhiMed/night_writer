@@ -1,6 +1,5 @@
 require './lib/dictionary'
 require './lib/translator'
-require './lib/formatter'
 
 class Terminal
 
@@ -9,9 +8,7 @@ class Terminal
   def initialize(user_provided_file, output_braile_file)
     @user_provided_file = user_provided_file
     @output_braile_file = output_braile_file
-    self.copy_translate_format_and_save
-    self.elaborate_way_to_remove_brackets
-    # self.reformat_braille_text
+    self.copy_translate_transpose_and_save
     self.print_message
   end
 
@@ -43,45 +40,28 @@ class Terminal
     translated_content
   end
 
-  # def reformat_braille_text
-  #   formatter = Formatter.new
-  #   formatter.reformat
-  # end
+  def transpose
+      translate.transpose
+  end
 
-  # def save
-  #   content = self.translate
-  # File.new(@output_braile_file, mode: "w")
-  # open(@output_braile_file, 'a'){ |f|
-  #   translate.each do |character|
-  #   f << "#{character[0]}\n"
-  #   f << "#{character[1]}\n"
-  #   f << "#{character[2]}\n"
-  #   end
-  #     }
-  #
-  # end
-
+  def zip_line_breaks
+    a = transpose
+    b = ["\n", "\n", "\n"]
+    c = a.zip(b)
+  end
 
   def save
-    translated_content = self.translate
     File.new(@output_braile_file, mode: "w")
-    file = File.open(@output_braile_file, mode: "w")
-    file.write(translated_content.to_s.gsub('"', '').gsub(' ', '').gsub(',', ''))
-    file.close
+    open(@output_braile_file, 'a'){ |f|
+    zip_line_breaks.each do |character|
+      f << "#{character[0]}"
+      f << "#{character[1]}"
+    end}
   end
 
-  #need to figure out how to get rid of '[]' some other way
-  def elaborate_way_to_remove_brackets
-    content = copy_file(@output_braile_file)
-    file = File.open(@output_braile_file, mode: "w")
-    file.write(content.to_s.gsub('[', '').gsub(']', ''))
-    file.close
-  end
-
-  def copy_translate_format_and_save
+  def copy_translate_transpose_and_save
     copy_file(@user_provided_file)
     translate
-    # reformat_braille_text
     save
   end
 end

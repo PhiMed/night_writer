@@ -1,7 +1,6 @@
 require './lib/dictionary'
 
 class Translator
-  #@@filename = "./message.txt"
   attr_reader :content
 
   def initialize(user_file)
@@ -23,6 +22,6 @@ class Translator
         end
       end
     end
-    translated_array.transpose
+    translated_array
   end
 end
