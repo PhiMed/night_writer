@@ -14,15 +14,14 @@ describe Terminal do
 
   it 'returns the character count of user_provided_file' do
     night_writer = Terminal.new("message.txt", "braille.txt")
-    expect(night_writer.character_count("message.txt")).to eq 729
+    expect(night_writer.character_count("message.txt")).to eq 2
   end
 
-  it 'creates a new file loaded with users txt' do
+  it 'creates a new file called braille.txt loaded with translated text' do
     night_writer = Terminal.new("message.txt", "braille.txt")
-    expect(night_writer.character_count("message.txt")).to eq 729
-    expect(night_writer.character_count("braille.txt")).to eq 0
-    night_writer.copy_and_create
-    expect(night_writer.character_count("braille.txt")).to eq 729
+    expect(night_writer.character_count("message.txt")).to eq 2
+    night_writer.copy_translate_format_and_save
+    night_writer.elaborate_way_to_remove_brackets
+    expect(night_writer.character_count("braille.txt")).to be 6
   end
-
 end

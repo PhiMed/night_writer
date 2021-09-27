@@ -1,5 +1,3 @@
-require './lib/terminal'
-require './lib/translator'
 require './lib/letter'
 
 require 'csv'

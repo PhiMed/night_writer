@@ -10,14 +10,16 @@ describe Translator do
   end
 
   it 'can has access to the braille.txt file' do
-    expect(@translator.content.length).to eq 5
+    expect(@translator.content.length).to eq 27
   end
 
   it 'can convert the content to an array of characters' do
-    expect(@translator.content_to_array_of_characters).not_to eq nil
+    expect(@translator.array_of_untranslated_characters).not_to eq nil
   end
 
   it 'can translate' do
+    original_array = @translator.array_of_untranslated_characters
     expect(@translator.translate).not_to eq nil
+    expect(@translator.translate).not_to eq original_array
   end
 end
