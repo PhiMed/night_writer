@@ -11,7 +11,7 @@ describe TranslateToBraille do
   end
 
   it 'has access to the message.txt file' do
-    expect(@translator.content.length).to eq 6
+    expect(@translator.content.length).to eq 169
   end
 
   it 'can convert the content to an array of characters' do

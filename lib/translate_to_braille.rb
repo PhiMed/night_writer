@@ -9,7 +9,7 @@ class TranslateToBraille
   end
 
   def array_of_untranslated_characters
-    @content.split('')
+    @content.downcase.split('')
   end
 
   def translate_to_braille
