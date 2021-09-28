@@ -11,7 +11,7 @@ describe TranslateToEnglish do
   end
 
   it 'has access to the braille.txt file' do
-    expect(@translator.content.length).to eq 39
+    expect(@translator.content.length).to eq 867
   end
 
   it 'can convert the content to an array of characters' do

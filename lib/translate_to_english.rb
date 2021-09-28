@@ -32,8 +32,8 @@ class TranslateToEnglish
          if letter_group.to_s.gsub('"','').gsub(',','').gsub('[','').gsub(']','').gsub(' ', '') == letter_object.alt_string
            translated_to_english_array << letter_object.roman_letter
          end
-       end
-     end
-    translated_to_english_array.to_s.gsub('"', '').gsub(',','').gsub('[', '').gsub(']','')
+      end
+    end
+  translated_to_english_array.to_s.gsub('"', '').gsub(',','').gsub('[', '').gsub(']','')
   end
 end

@@ -12,13 +12,13 @@ describe Reader do
   end
 
   it 'returns the character count of user_provided_file' do
-    expect(@night_reader.character_count(@output_file)).to eq 6
+    expect(@night_reader.character_count(@output_file)).to eq 169
   end
 
   it 'creates a new file loaded with english text' do
-    expect(@night_reader.character_count(@braille_file)).to be 39
+    expect(@night_reader.character_count(@braille_file)).to be 867
     @night_reader.copy_translate_save_to_english
-    expect(@night_reader.character_count(@output_file)).to be 6
+    expect(@night_reader.character_count(@output_file)).to be 169
 
   end
 end
